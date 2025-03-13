@@ -1,0 +1,44 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column($align: center, $justify: center) {
+  display: flex;
+  flex-direction: column;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin responsive-text($size) {
+  font-size: $size;
+  @media (max-width: 768px) {
+    font-size: $size * 0.875;
+  }
+  @media (max-width: 480px) {
+    font-size: $size * 0.8;
+  }
+}
+
+@mixin box-shadow($color: rgba(0, 0, 0, 0.1)) {
+  box-shadow: 0 4px 6px $color, 0 1px 3px rgba($color, 0.08);
+}
+
+@mixin rounded($radius: $border-radius) {
+  border-radius: $radius;
+}
+
+@mixin padding($top: $spacing-medium, $right: $spacing-medium, $bottom: $spacing-medium, $left: $spacing-medium) {
+  padding: $top $right $bottom $left;
+}
+
+@mixin margin($top: $spacing-medium, $right: $spacing-medium, $bottom: $spacing-medium, $left: $spacing-medium) {
+  margin: $top $right $bottom $left;
+}

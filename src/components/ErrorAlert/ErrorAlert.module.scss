@@ -1,0 +1,11 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.errorAlert {
+  background-color: rgba($error-color, 0.9);
+  color: $text-color;
+  padding: $spacing-medium;
+  border-radius: $border-radius;
+  @include box-shadow($error-color);
+  margin: $spacing-medium 0;
+}

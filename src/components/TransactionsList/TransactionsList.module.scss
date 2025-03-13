@@ -1,0 +1,19 @@
+.transactionsContainer {
+    margin-top: 1rem;
+  }
+  
+  .transactionsTable {
+    width: 100%;
+    border-collapse: collapse;
+    
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+  
+    thead {
+      background-color: #f2f2f2;
+    }
+  }
+  
