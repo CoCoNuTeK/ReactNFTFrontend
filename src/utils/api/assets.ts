@@ -23,10 +23,10 @@ export const getAssetHistory = async (assetId: string, count = 5): Promise<Asset
   }
 };
 
-export const getAssetTransactions = async (asset: string): Promise<AssetMetadata[]> => {
+export const getAssetTransactions = async (asset: string): Promise<AssetHistoryEntry[]> => {
   try {
     const response = await apiClient.get(`/assets/${asset}/transactions`);
-    return response.data as AssetMetadata[];
+    return response.data as AssetHistoryEntry[];
   } catch (error: unknown) {
     const apiError = error as ApiError;
     throw new Error(apiError.response?.data?.message || apiError.message);
@@ -36,7 +36,7 @@ export const getAssetTransactions = async (asset: string): Promise<AssetMetadata
 export const getAssetAddresses = async (asset: string): Promise<AssetAddress[]> => {
   try {
     const response = await apiClient.get(`/assets/${asset}/addresses`);
-    return response.data as AssetAddress[]; 
+    return response.data as AssetAddress[];
   } catch (error: unknown) {
     const apiError = error as ApiError;
     throw new Error(apiError.response?.data?.message || apiError.message);

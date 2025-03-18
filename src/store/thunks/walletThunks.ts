@@ -19,8 +19,7 @@ import {
   setAssets,
 } from "../slices/walletSlice";
 
-import { AccountInfo, AccountTotal, AccountHistoryEntry } from "@/types/accounts";
-import { AssetBalance, AssetMetadata } from "@/types/assets";
+import { AssetMetadata } from "@/types/assets";
 
 export const fetchWalletData = createAsyncThunk<
   void,
