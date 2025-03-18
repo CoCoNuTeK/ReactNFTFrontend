@@ -1,8 +1,9 @@
 import React from "react";
+import Image from "next/image";
 import { AssetMetadata } from "@/types/assets";
 import styles from "./NftGallery.module.scss";
 
-const getImageUrl = (image?: any) => {
+const getImageUrl = (image?: string | undefined): string => {
   if (!image || typeof image !== "string") return "/placeholder.png";
   return image.startsWith("ipfs://")
     ? `https://ipfs.io/ipfs/${image.replace("ipfs://", "")}`
@@ -25,10 +26,13 @@ const NftGallery: React.FC<NftGalleryProps> = ({ assets }) => {
       <div className={styles.nftList}>
         {assets.map((asset) => (
           <div key={asset.asset} className={styles.nftCard}>
-            <img
+            <Image
               src={getImageUrl(asset.onchain_metadata?.image)}
               alt={asset.onchain_metadata?.name || "NFT Image"}
               className={styles.nftImage}
+              width={300}
+              height={300}
+              style={{ objectFit: 'cover' }}
             />
             <h3 className={styles.nftName}>{asset.onchain_metadata?.name ?? "Unnamed NFT"}</h3>
             <p className={styles.nftQuantity}>Quantity: {asset.quantity}</p>

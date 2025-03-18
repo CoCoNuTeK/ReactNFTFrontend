@@ -1,13 +1,15 @@
 import apiClient from "../apiClient";
 import { AccountInfo, AccountTotal, AccountHistoryEntry } from "@/types/accounts";
 import { AssetBalance } from "@/types/assets";
+import { ApiError } from "@/types/api";
 
 export const getWalletInfo = async (stakeAddress: string): Promise<AccountInfo> => {
   try {
     const response = await apiClient.get(`/accounts/${stakeAddress}`);
     return response.data as AccountInfo;
-  } catch (error: any) {
-    throw new Error(error.response?.data?.message || error.message);
+  } catch (error: unknown) {
+    const apiError = error as ApiError;
+    throw new Error(apiError.response?.data?.message || apiError.message);
   }
 };
 
@@ -15,8 +17,9 @@ export const getTransactionCount = async (stakeAddress: string): Promise<Account
   try {
     const response = await apiClient.get(`/accounts/${stakeAddress}/addresses/total`);
     return response.data as AccountTotal;
-  } catch (error: any) {
-    throw new Error(error.response?.data?.message || error.message);
+  } catch (error: unknown) {
+    const apiError = error as ApiError;
+    throw new Error(apiError.response?.data?.message || apiError.message);
   }
 };
 
@@ -29,8 +32,9 @@ export const getRecentTransactions = async (
       params: { count },
     });
     return response.data as AccountHistoryEntry[];
-  } catch (error: any) {
-    throw new Error(error.response?.data?.message || error.message);
+  } catch (error: unknown) {
+    const apiError = error as ApiError;
+    throw new Error(apiError.response?.data?.message || apiError.message);
   }
 };
 
@@ -38,7 +42,8 @@ export const getWalletAssets = async (stakeAddress: string): Promise<AssetBalanc
   try {
     const response = await apiClient.get(`/accounts/${stakeAddress}/addresses/assets`);
     return response.data as AssetBalance[];
-  } catch (error: any) {
-    throw new Error(error.response?.data?.message || error.message);
+  } catch (error: unknown) {
+    const apiError = error as ApiError;
+    throw new Error(apiError.response?.data?.message || apiError.message);
   }
 };
